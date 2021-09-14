@@ -1,3 +1,6 @@
 # Project exclude paths
 /target/
 /.idea/
+/.settings/
+/showcase/kafkaMigration/
+/showcase/kafkaSecure/
