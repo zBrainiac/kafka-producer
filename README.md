@@ -9,6 +9,9 @@ cd infra/kafka_2.12-2.6.0
 bin/zookeeper-server-start.sh config/zookeeper.properties  
 bin/kafka-server-start.sh config/server.properties  
 
+# kafka_unbalanced
+./bin/kafka-topics.sh --delete --bootstrap-server localhost:9092 --topic kafka_unbalanced
+./bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 5 --topic kafka_unbalanced
 
 ./bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic trx &&  
 ./bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic fx &&  
@@ -29,8 +32,8 @@ sudo mv /tmp/kafka-producer-0.0.1.0.jar /opt/cloudera/parcels/FLINK/lib/flink/ex
 
 
 
-## Test data gen:
-### TRX
+## Test data generators:
+### Credit Card transactions
 run:  
 ```
 cd /opt/cloudera/parcels/FLINK/lib/flink/examples/streaming  
@@ -73,8 +76,8 @@ java -classpath kafka-producer-0.0.1.0.jar producer.KafkaIOTSensorSimulator edge
 ```
 simulation of anomalies 1:1'000
 ```
-java -classpath kafka-producer-0.0.1.0.jar producer.KafkaProducerIOTSensorAnomaly localhost:9092                         
-java -classpath kafka-producer-0.0.1.0.jar producer.KafkaProducerIOTSensorAnomaly edge2ai-1.dim.local:9092 100                           
+java -classpath kafka-producer-0.0.1.0.jar producer.KafkaIOTSensorSimulatorAnomaly localhost:9092                         
+java -classpath kafka-producer-0.0.1.0.jar producer.KafkaIOTSensorSimulatorAnomaly edge2ai-1.dim.local:9092 100                           
 ```  
 sample iot output json:
 ```
@@ -224,7 +227,7 @@ Sample:
 #!/bin/sh
 nohup java -classpath kafka-producer-0.0.1.0.jar producer.KafkaFSIFXRates edge2ai-1.dim.local:9092 &
 nohup java -classpath kafka-producer-0.0.1.0.jar producer.KafkaFSICreditCartTRX edge2ai-1.dim.local:9092 &
-nohup java -classpath kafka-producer-0.0.1.0.jar producer.KafkaIOTSensorSimulator edge2ai-1.dim.local:9092 &
+nohup java -classpath kafka-producer-0.0.1.0.jar producer.KafkaIOTSensorSimulatorLogCompaction edge2ai-1.dim.local:9092 &
 ```
 
 ```

@@ -76,7 +76,7 @@ public class KafkaProducerUnbalanced {
                 Integer part = itemDrops.getRandom();
                 Long timestamp = Instant.now().toEpochMilli();
                 String key = UUID.randomUUID().toString();
-                String recordValue = "Current time is " + Instant.now().toString();
+                String recordValue = "msg_id=" + i + ", Current_time_is= " + Instant.now().toString();
 
 
                 ProducerRecord<String, String> eventrecord = new ProducerRecord<>("kafka_unbalanced",
@@ -86,9 +86,14 @@ public class KafkaProducerUnbalanced {
                         recordValue);
 
                 //produce the record
-                RecordMetadata metadata = producer.send(eventrecord).get();
+                RecordMetadata msg = producer.send(eventrecord).get();
 
-                LOG.info(new StringBuilder().append("Published: ").append("topic=").append(metadata.topic()).append(", ").append("partition=").append(metadata.partition()).append(", ").append("offset=").append(metadata.offset()).append(",").append("timestamp=").append(metadata.timestamp()).append(", ").append("key=").append(key).append(", ").append("payload=").append(recordValue).toString());
+                LOG.info(new StringBuilder().append("Published ")
+                        .append(msg.topic()).append("/")
+                        .append(msg.partition()).append("/")
+                        .append(msg.offset()).append(" : ")
+                        .append(eventrecord)
+                        .toString());
 
                 producer.flush();
 

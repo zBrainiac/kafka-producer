@@ -1,9 +1,6 @@
 package producer;
 
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.Producer;
-import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.clients.producer.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -64,7 +61,7 @@ public class KafkaIOTSimpleCSVProducer {
                 ProducerRecord<Integer, String> eventrecord = new ProducerRecord<>("iot_CSV", i,
                         Instant.now().toEpochMilli()
                                 + "," + new SecureRandom().nextInt(41) // sensor_id
-                                + "," + new SecureRandom().nextInt(9) // sensor_0
+                                + "," + i // sensor_0
                                 + "," + new SecureRandom().nextInt(11) // sensor_1
                                 + "," + new SecureRandom().nextInt(22) // sensor_2
                                 + "," + new SecureRandom().nextInt(33) // sensor_3
@@ -79,7 +76,14 @@ public class KafkaIOTSimpleCSVProducer {
                 );
                 producer.send(eventrecord);
 
-                LOG.info(new StringBuilder().append("Published ").append(eventrecord.topic()).append("/").append(eventrecord.partition()).append("/").append(" (key=").append(eventrecord.key()).append(") : ").append(eventrecord.value()).toString());
+                RecordMetadata msg = producer.send(eventrecord).get();
+
+                LOG.info(new StringBuilder().append("Published ")
+                        .append(msg.topic()).append("/")
+                        .append(msg.partition()).append("/")
+                        .append(msg.offset()).append(" : ")
+                        .append(eventrecord.value())
+                        .toString());
 
                 Thread.sleep(sleeptime);
             }

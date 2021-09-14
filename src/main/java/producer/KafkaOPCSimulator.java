@@ -73,16 +73,15 @@ public class KafkaOPCSimulator {
     }
 
     private static void publishMessage(Producer<String, byte[]> producer) throws Exception {
-        String key = UUID.randomUUID().toString();
 
         ObjectNode messageJsonObject = jsonObject();
         byte[] valueJson = objectMapper.writeValueAsBytes(messageJsonObject);
 
-        ProducerRecord<String, byte[]> eventrecord = new ProducerRecord<>("opc", key, valueJson);
+        ProducerRecord<String, byte[]> eventrecord = new ProducerRecord<>("opc", valueJson);
 
         RecordMetadata md = producer.send(eventrecord).get();
 
-        LOG.info(new StringBuilder().append("Published ").append(md.topic()).append("/").append(md.partition()).append("/").append(md.offset()).append(" (key=").append(key).append(") : ").append(messageJsonObject).toString());
+        LOG.info(new StringBuilder().append("Published ").append(md.topic()).append("/").append(md.partition()).append("/").append(md.offset()).append(") : ").append(messageJsonObject).toString());
     }
 
     // build random json object

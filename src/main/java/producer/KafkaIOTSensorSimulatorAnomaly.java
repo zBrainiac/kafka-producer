@@ -15,16 +15,16 @@ import java.util.*;
 /**
  * run:
  * cd /opt/cloudera/parcels/FLINK/lib/flink/examples/streaming &&
- * java -classpath kafka-producer-0.0.1.0.jar producer.KafkaProducerIOTSensorAnomaly localhost:9092
+ * java -classpath kafka-producer-0.0.1.0.jar producer.KafkaIOTSensorSimulatorAnomaly localhost:9092
  *
  * @author Marcel Daeppen
  * @version 2021/08/07 14:28
  */
 
-public class KafkaProducerIOTSensorAnomaly {
+public class KafkaIOTSensorSimulatorAnomaly {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
-    private static final Logger LOG = LoggerFactory.getLogger(KafkaProducerIOTSensorAnomaly.class);
+    private static final Logger LOG = LoggerFactory.getLogger(KafkaIOTSensorSimulatorAnomaly.class);
     private static final Random random = new SecureRandom();
     private static final String LOGGERMSG = "Program prop set {}";
 
@@ -66,21 +66,38 @@ public class KafkaProducerIOTSensorAnomaly {
 
             for (int i = 0; i < 1000000; i++) {
                 Integer part = itemDrops.getRandom();
-                String key = UUID.randomUUID().toString();
 
                 if (part == 1){
                     ObjectNode messageJsonObject = jsonObject();
                     byte[] valueJson = objectMapper.writeValueAsBytes(messageJsonObject);
+
+                    final ObjectNode node = new ObjectMapper().readValue(valueJson, ObjectNode.class);
+                    String key = String.valueOf(node.get("sensor_id"));
+
                     ProducerRecord<String, byte[]> eventrecord = new ProducerRecord<>("iot", key, valueJson);
                     RecordMetadata msg = producer.send(eventrecord).get();
-                    LOG.info(new StringBuilder().append("Published ").append(msg.topic()).append("/").append(msg.partition()).append("/").append(msg.offset()).append(" (key=").append(key).append(") : ").append(messageJsonObject).toString());
+                    LOG.info(new StringBuilder().append("Published ")
+                            .append(msg.topic()).append("/")
+                            .append(msg.partition()).append("/")
+                            .append(msg.offset()).append(" : ")
+                            .append(jsonObjectAnomaly())
+                            .toString());
                 }
                 else{
                     ObjectNode messageJsonObject = jsonObjectAnomaly();
                     byte[] valueJson = objectMapper.writeValueAsBytes(messageJsonObject);
+
+                    final ObjectNode node = new ObjectMapper().readValue(valueJson, ObjectNode.class);
+                    String key = String.valueOf(node.get("sensor_id"));
+
                     ProducerRecord<String, byte[]> eventrecord = new ProducerRecord<>("iot", key, valueJson);
                     RecordMetadata msg = producer.send(eventrecord).get();
-                    LOG.info(new StringBuilder().append("Published ").append(msg.topic()).append("/").append(msg.partition()).append("/").append(msg.offset()).append(" (key=").append(key).append(") : ").append(jsonObjectAnomaly()).toString());
+                    LOG.info(new StringBuilder().append("Published ")
+                            .append(msg.topic()).append("/")
+                            .append(msg.partition()).append("/")
+                            .append(msg.offset()).append(" : ")
+                            .append(jsonObjectAnomaly())
+                            .toString());
                 }
 
 
@@ -134,7 +151,7 @@ public class KafkaProducerIOTSensorAnomaly {
     }
 
     public static void setsleeptime(long sleeptime) {
-        KafkaProducerIOTSensorAnomaly.sleeptime = sleeptime;
+        KafkaIOTSensorSimulatorAnomaly.sleeptime = sleeptime;
     }
 
     private static class WeightedRandomBag<T> {

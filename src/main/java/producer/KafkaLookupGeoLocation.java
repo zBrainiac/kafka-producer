@@ -181,9 +181,14 @@ public class KafkaLookupGeoLocation {
                 ProducerRecord<String, String> eventrecord = new ProducerRecord<>("kafka_LookupGeoLocation", recordValue);
 
                 //produce the eventrecord
-                RecordMetadata md = producer.send(eventrecord).get();
+                RecordMetadata msg = producer.send(eventrecord).get();
 
-                LOG.info(new StringBuilder().append("Published: ").append("topic=").append(md.topic()).append(", ").append("partition=").append(md.partition()).append(", ").append("offset=").append(md.offset()).append(", ").append("timestamp=").append(md.timestamp()).append(", ").append("payload=").append(recordValue).toString());
+                LOG.info(new StringBuilder().append("Published ")
+                        .append(msg.topic()).append("/")
+                        .append(msg.partition()).append("/")
+                        .append(msg.offset()).append(" : ")
+                        .append(recordValue)
+                        .toString());
 
                 producer.flush();
             }
