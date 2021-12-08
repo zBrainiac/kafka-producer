@@ -23,7 +23,7 @@ bin/kafka-server-start.sh config/server.properties
 
 
 ### Download release:  
-cd /opt/cloudera/parcels/FLINK  
+cd /opt/cloudera/parcels/FLINK  &&
 sudo wget https://github.com/zBrainiac/kafka-producer/releases/download/0.0.1/kafka-producer-0.0.1.0.jar -P /opt/cloudera/parcels/FLINK/lib/flink/examples/streaming
 
 ### Upload release: 

@@ -75,12 +75,7 @@ public class KafkaFSIFXRates {
 
         RecordMetadata msg = producer.send(eventrecord).get();
 
-        LOG.info(new StringBuilder().append("Published ")
-                .append(msg.topic()).append("/")
-                .append(msg.partition()).append("/")
-                .append(msg.offset()).append(" : ")
-                .append(messageJsonObject)
-                .toString());
+        LOG.info(String.format("Published %s/%d/%d : %s", msg.topic(), msg.partition(), msg.offset(), messageJsonObject));
     }
 
     // build random json object
@@ -89,10 +84,11 @@ public class KafkaFSIFXRates {
         int i= random.nextInt(8);
 
         ObjectNode report = objectMapper.createObjectNode();
-        report.put("timestamp", System.currentTimeMillis());
+        report.put("fx_ts", System.currentTimeMillis());
 
         String fxRate = "fx_rate";
         String fx_target = "fx_target";
+
         switch (i) {
             case 0:
                 report.put("fx", "CHF");

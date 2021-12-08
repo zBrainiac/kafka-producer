@@ -25,7 +25,7 @@ import static java.util.Collections.unmodifiableList;
  * @version 2021/08/07 14:28
  */
 
-public class KafkaFSICreditCartTRX {
+class KafkaFSICreditCartTRX {
     private static final ObjectMapper objectMapper = new ObjectMapper();
     private static final Logger LOG = LoggerFactory.getLogger(KafkaFSICreditCartTRX.class);
     private static final Random random = new SecureRandom();
@@ -81,12 +81,7 @@ public class KafkaFSICreditCartTRX {
 
         RecordMetadata msg = producer.send(eventrecord).get();
 
-        LOG.info(new StringBuilder().append("Published ")
-                .append(msg.topic()).append("/")
-                .append(msg.partition()).append("/")
-                .append(msg.offset()).append(" : ")
-                .append(messageJsonObject)
-                .toString());
+        LOG.info(String.format("Published %s/%d/%d : %s", msg.topic(), msg.partition(), msg.offset(), messageJsonObject));
     }
 
     // build random json object
