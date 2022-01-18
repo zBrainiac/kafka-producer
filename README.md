@@ -67,14 +67,14 @@ sample fx output json:
 run:
 ```
 cd /opt/cloudera/parcels/FLINK/lib/flink/examples/streaming  
-java -classpath kafka-producer-0.0.1.0.jar producer.KafkaIOTSensorSimulator or  
-java -classpath kafka-producer-0.0.1.0.jar producer.KafkaIOTSensorSimulator localhost:9092 10 (= 10 sleep time in ms between the messages | default 1'000 ms)  
-java -classpath kafka-producer-0.0.1.0.jar producer.KafkaIOTSensorSimulator edge2ai-1.dim.local:9092
+java -classpath kafka-producer-0.0.1.0.jar producer.KafkaIOTSensorSimulatorLogCompaction or  
+java -classpath kafka-producer-0.0.1.0.jar producer.KafkaIOTSensorSimulatorLogCompaction localhost:9092 10 (= 10 sleep time in ms between the messages | default 1'000 ms)  
+java -classpath kafka-producer-0.0.1.0.jar producer.KafkaIOTSensorSimulatorLogCompaction edge2ai-1.dim.local:9092
 ```
 simulation of anomalies 1:1'000
 ```
-java -classpath kafka-producer-0.0.1.0.jar producer.KafkaProducerIOTSensorAnomaly localhost:9092                         
-java -classpath kafka-producer-0.0.1.0.jar producer.KafkaProducerIOTSensorAnomaly edge2ai-1.dim.local:9092 100                           
+java -classpath kafka-producer-0.0.1.0.jar producer.KafkaIOTSensorSimulatorAnomaly localhost:9092                         
+java -classpath kafka-producer-0.0.1.0.jar producer.KafkaIOTSensorSimulatorAnomaly edge2ai-1.dim.local:9092 100                           
 ```  
 sample iot output json:
 ```
@@ -224,7 +224,7 @@ Sample:
 #!/bin/sh
 nohup java -classpath kafka-producer-0.0.1.0.jar producer.KafkaFSIFXRates edge2ai-1.dim.local:9092 &
 nohup java -classpath kafka-producer-0.0.1.0.jar producer.KafkaFSICreditCartTRX edge2ai-1.dim.local:9092 &
-nohup java -classpath kafka-producer-0.0.1.0.jar producer.KafkaIOTSensorSimulator edge2ai-1.dim.local:9092 &
+nohup java -classpath kafka-producer-0.0.1.0.jar producer.KafkaIOTSensorSimulatorLogCompaction edge2ai-1.dim.local:9092 &
 ```
 
 ```

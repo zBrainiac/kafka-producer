@@ -1,0 +1,6 @@
+./bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --topic test-ISR --partitions 5 --replication-factor 5 --config min.insync.replicas=4 --config unclean.leader.election.enable=false
+./bin/kafka-topics.sh --describe --bootstrap-server <server-list/dns>:9092 --topic test-ISR
+
+
+./bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --topic iot --partitions 5 --replication-factor 5 --config min.insync.replicas=4 --config unclean.leader.election.enable=false
+./bin/kafka-topics.sh --describe --bootstrap-server localhost:9092 --topic iot

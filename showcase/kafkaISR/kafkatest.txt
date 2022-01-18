@@ -1,0 +1,15 @@
+bin/kafka-topics.sh --delete --bootstrap-server localhost:9092 --topic iot  &&
+bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 12 --topic iot --config min.insync.replicas=3 &&
+bin/kafka-topics.sh --list --bootstrap-server localhost:9092  &&
+bin/kafka-topics.sh --describe --bootstrap-server localhost:9092  --topic iot &&
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic iot --group cli
+
+
+
+
+
+bin/kafka-topics.sh --delete --bootstrap-server localhost:9092 --topic iot  &&
+bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 12 --topic iot --config min.insync.replicas=1 &&
+bin/kafka-topics.sh --list --bootstrap-server localhost:9092  &&
+bin/kafka-topics.sh --describe --bootstrap-server localhost:9092  --topic iot &&
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic iot --group cli

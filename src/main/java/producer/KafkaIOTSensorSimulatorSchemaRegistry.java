@@ -69,16 +69,15 @@ public class KafkaIOTSensorSimulatorSchemaRegistry {
     }
 
     private static void publishMessage(Producer<String, byte[]> producer) throws Exception {
-        String key = UUID.randomUUID().toString();
 
         ObjectNode messageJsonObject = jsonObject();
         byte[] valueJson = objectMapper.writeValueAsBytes(messageJsonObject);
 
-        ProducerRecord<String, byte[]> eventrecord = new ProducerRecord<>("iot", key, valueJson);
+        ProducerRecord<String, byte[]> eventrecord = new ProducerRecord<>("iot", valueJson);
 
         RecordMetadata msg = producer.send(eventrecord).get();
 
-        LOG.info(new StringBuilder().append("Published ").append(msg.topic()).append("/").append(msg.partition()).append("/").append(msg.offset()).append(" (key=").append(key).append(") : ").append(messageJsonObject).toString());
+        LOG.info(new StringBuilder().append("Published ").append(msg.topic()).append("/").append(msg.partition()).append("/").append(msg.offset()).append(") : ").append(messageJsonObject).toString());
 
     }
 
