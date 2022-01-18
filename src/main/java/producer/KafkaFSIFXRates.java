@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import java.security.SecureRandom;
 import java.util.Properties;
 import java.util.Random;
-import java.util.UUID;
 
 
 /**
@@ -74,9 +73,9 @@ public class KafkaFSIFXRates {
 
         ProducerRecord<String, byte[]> eventrecord = new ProducerRecord<>("fxRate", valueJson);
 
-        RecordMetadata md = producer.send(eventrecord).get();
-        
-        LOG.info(new StringBuilder().append("Published ").append(md.topic()).append("/").append(md.partition()).append("/").append(md.offset()).append(") : ").append(messageJsonObject).toString());
+        RecordMetadata msg = producer.send(eventrecord).get();
+
+        LOG.info(String.format("Published %s/%d/%d : %s", msg.topic(), msg.partition(), msg.offset(), messageJsonObject));
     }
 
     // build random json object
@@ -85,10 +84,11 @@ public class KafkaFSIFXRates {
         int i= random.nextInt(8);
 
         ObjectNode report = objectMapper.createObjectNode();
-        report.put("timestamp", System.currentTimeMillis());
+        report.put("fx_ts", System.currentTimeMillis());
 
         String fxRate = "fx_rate";
         String fx_target = "fx_target";
+
         switch (i) {
             case 0:
                 report.put("fx", "CHF");

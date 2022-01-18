@@ -9,7 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.security.SecureRandom;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Properties;
+import java.util.Random;
 
 import static java.util.Collections.unmodifiableList;
 
@@ -103,8 +106,14 @@ public class KafkaTrafficCollector {
 
         ProducerRecord<String, byte[]> eventrecord = new ProducerRecord<>("TrafficCounterRaw", valueJson);
 
-        RecordMetadata md = producer.send(eventrecord).get();
-        LOG.info(new StringBuilder().append("Published ").append(md.topic()).append("/").append(md.partition()).append("/").append(md.offset()).append(") : ").append(messageJsonObject).toString());
+        RecordMetadata msg = producer.send(eventrecord).get();
+
+        LOG.info(new StringBuilder().append("Published ")
+                .append(msg.topic()).append("/")
+                .append(msg.partition()).append("/")
+                .append(msg.offset()).append(" : ")
+                .append(messageJsonObject)
+                .toString());
     }
 
     // build random json object

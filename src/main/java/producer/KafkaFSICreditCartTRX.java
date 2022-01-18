@@ -9,7 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.security.SecureRandom;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Properties;
+import java.util.Random;
 
 import static java.util.Collections.unmodifiableList;
 
@@ -22,7 +25,7 @@ import static java.util.Collections.unmodifiableList;
  * @version 2021/08/07 14:28
  */
 
-public class KafkaFSICreditCartTRX {
+class KafkaFSICreditCartTRX {
     private static final ObjectMapper objectMapper = new ObjectMapper();
     private static final Logger LOG = LoggerFactory.getLogger(KafkaFSICreditCartTRX.class);
     private static final Random random = new SecureRandom();
@@ -76,9 +79,9 @@ public class KafkaFSICreditCartTRX {
 
         ProducerRecord<String, byte[]> eventrecord = new ProducerRecord<>("cctrx", valueJson);
 
-        RecordMetadata md = producer.send(eventrecord).get();
-        
-        LOG.info(new StringBuilder().append("Published ").append(md.topic()).append("/").append(md.partition()).append("/").append(md.offset()).append(") : ").append(messageJsonObject).toString());
+        RecordMetadata msg = producer.send(eventrecord).get();
+
+        LOG.info(String.format("Published %s/%d/%d : %s", msg.topic(), msg.partition(), msg.offset(), messageJsonObject));
     }
 
     // build random json object

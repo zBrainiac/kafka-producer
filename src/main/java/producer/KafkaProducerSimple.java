@@ -31,7 +31,7 @@ public class KafkaProducerSimple {
     private static final Logger LOG = LoggerFactory.getLogger(KafkaProducerSimple.class);
     private static final String LOGGERMSG = "Program prop set {}";
 
-    private static String brokerURI = "kafka:9092";
+    private static String brokerURI = " ec2-3-69-23-208.eu-central-1.compute.amazonaws.com:9092";
     private static long sleeptime = 1000;
 
     public static void main(String[] args) throws Exception {
@@ -62,14 +62,19 @@ public class KafkaProducerSimple {
         try (Producer<String, String> producer = new KafkaProducer<>(properties)) {
 
             for (int i = 0; i < 1000000; i++) {
-                String recordValue = "Current time is " + Instant.now().toString();
+                String recordValue = "msg_id=" + i + ", Current_time_is= " + Instant.now().toString();
 
                 ProducerRecord<String, String> eventrecord = new ProducerRecord<>("kafka_simple", recordValue);
 
                 //produce the eventrecord
-                RecordMetadata metadata = producer.send(eventrecord).get();
+                RecordMetadata msg = producer.send(eventrecord).get();
 
-                LOG.info(new StringBuilder().append("Published: ").append("topic=").append(metadata.topic()).append(", ").append("partition=").append(metadata.partition()).append(", ").append("offset=").append(metadata.offset()).append(", ").append("timestamp=").append(metadata.timestamp()).append(", ").append("payload=").append(recordValue).toString());
+                LOG.info(new StringBuilder().append("Published ")
+                        .append(msg.topic()).append("/")
+                        .append(msg.partition()).append("/")
+                        .append(msg.offset()).append(" : ")
+                        .append(recordValue)
+                        .toString());
 
                 producer.flush();
                 // wait

@@ -68,9 +68,16 @@ public class KafkaIOTSimpleKVProducer {
                                 + ", id: " + uuid
                                 + ", Test Message: bliblablub #" + i
                 );
-                producer.send(eventrecord);
 
-                LOG.info(new StringBuilder().append("Published ").append(eventrecord.topic()).append("/").append(eventrecord.partition()).append("/").append(" (key=").append(eventrecord.key()).append(") : ").append(eventrecord.value()).toString());
+                RecordMetadata msg = producer.send(eventrecord).get();
+
+                LOG.info(new StringBuilder().append("Published ")
+                        .append(msg.topic()).append("/")
+                        .append(msg.partition()).append("/")
+                        .append(msg.offset()).append(" : ")
+                        .append(eventrecord.value())
+                        .toString());
+
                 Thread.sleep(sleeptime);
             }
         }

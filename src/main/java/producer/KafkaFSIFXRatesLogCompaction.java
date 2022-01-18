@@ -9,10 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.security.SecureRandom;
-import java.time.Instant;
 import java.util.Properties;
 import java.util.Random;
-import java.util.UUID;
 
 
 /**
@@ -84,13 +82,13 @@ public class KafkaFSIFXRatesLogCompaction {
         ProducerRecord<String, byte[]> eventrecord = new ProducerRecord<>("latest-FX", key, valueJson);
 
         RecordMetadata msg = producer.send(eventrecord).get();
-        
-        LOG.info(new StringBuilder().append("Published: ")
-                .append("topic: ").append(msg.topic()).append(", ")
-                .append("part: ").append(msg.partition()).append(", ")
-                .append("offset: ").append(msg.offset()).append(", ")
-                .append("key").append(key)
-                .append(") : playload: ").append(messageJsonObject).toString());
+
+        LOG.info(new StringBuilder().append("Published ")
+                .append(msg.topic()).append("/")
+                .append(msg.partition()).append("/")
+                .append(msg.offset()).append(" : ")
+                .append(messageJsonObject)
+                .toString());
     }
 
     // build random json object

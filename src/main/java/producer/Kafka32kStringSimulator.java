@@ -12,7 +12,6 @@ import java.security.SecureRandom;
 import java.time.Instant;
 import java.util.Properties;
 import java.util.Random;
-import java.util.UUID;
 
 
 /**
@@ -77,7 +76,12 @@ public class Kafka32kStringSimulator {
 
         RecordMetadata msg = producer.send(eventrecord).get();
 
-        LOG.info(new StringBuilder().append("Published ").append(msg.topic()).append("/").append(msg.partition()).append("/").append(msg.offset()).append(") : ").append(messageJsonObject).toString());
+        LOG.info(new StringBuilder().append("Published ")
+                .append(msg.topic()).append("/")
+                .append(msg.partition()).append("/")
+                .append(msg.offset()).append(" : ")
+                .append(messageJsonObject)
+                .toString());
     }
 
     // build random json object

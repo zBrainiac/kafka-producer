@@ -3,7 +3,11 @@
 In case of handling very critical events you maybe have to fulfil requirements around _"zero data loss". Which is often used, but a bit misleading. It would be more precise to speak of consistend, in-sync replicated clusters.  
 
 the following image provides an overview of ISR Kafka Cluster setup
+<<<<<<< HEAD
 ![Alt text](../../images/KafkaISRoverview.png?raw=true "Title")
+=======
+![Alt text](../../images/KafkaISRoverview.png "Title")
+>>>>>>> github/master
 
 ## prepare the environment
 ```

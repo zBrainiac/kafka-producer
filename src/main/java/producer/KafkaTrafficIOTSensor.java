@@ -10,7 +10,8 @@ import org.slf4j.LoggerFactory;
 
 import java.security.SecureRandom;
 import java.time.Instant;
-import java.util.*;
+import java.util.Properties;
+import java.util.Random;
 
 
 /**
@@ -77,9 +78,15 @@ public class KafkaTrafficIOTSensor {
 
         ProducerRecord<String, byte[]> eventrecord = new ProducerRecord<>("TrafficIOTRaw", valueJson);
 
-        RecordMetadata md = producer.send(eventrecord).get();
-        
-        LOG.info(new StringBuilder().append("Published ").append(md.topic()).append("/").append(md.partition()).append("/").append(md.offset()).append(") : ").append(messageJsonObject).toString());
+        RecordMetadata msg = producer.send(eventrecord).get();
+
+        LOG.info(new StringBuilder().append("Published ")
+                .append(msg.topic()).append("/")
+                .append(msg.partition()).append("/")
+                .append(msg.offset()).append(" : ")
+                .append(messageJsonObject)
+                .toString());
+
     }
 
     // build random json object

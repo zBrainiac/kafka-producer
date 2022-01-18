@@ -30,7 +30,7 @@ public class KafkaProducerSimpleTransactional {
     private static final Logger LOG = LoggerFactory.getLogger(KafkaProducerSimpleTransactional.class);
     private static final String LOGGERMSG = "Program prop set {}";
 
-    private static String brokerURI = "kafka:9092";
+    private static String brokerURI = " localhost:9092";
     private static long sleeptime = 1000;
 
     public static void main(String[] args) throws Exception {

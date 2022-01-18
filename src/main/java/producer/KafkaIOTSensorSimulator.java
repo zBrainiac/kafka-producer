@@ -20,7 +20,7 @@ import java.util.Random;
  * ./bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 5 --topic iot --config "cleanup.policy=compact" --config "delete.retention.ms=100"  --config "segment.ms=100" --config "min.cleanable.dirty.ratio=0.01"
  *
  * kafka-console-consumer --bootstrap-server localhost:9092 --topic iot --property  print.key=true --from-beginning
- *
+ *©
  * run:
  * cd /opt/cloudera/parcels/FLINK/lib/flink/examples/streaming &&
  * java -classpath kafka-producer-0.0.1.0.jar producer.KafkaIOTSensorSimulator localhost:9092
@@ -34,7 +34,7 @@ public class KafkaIOTSensorSimulator {
     private static final Logger LOG = LoggerFactory.getLogger(KafkaIOTSensorSimulator.class);
     private static final Random random = new SecureRandom();
     private static final String LOGGERMSG = "Program prop set {}";
-    private static String brokerURI = "kafka:9092";
+    private static String brokerURI = "localhost:9092";
     private static long sleeptime = 1000;
 
     static KafkaProducer<String, String> producer;
@@ -98,12 +98,7 @@ public class KafkaIOTSensorSimulator {
 
                 RecordMetadata msg = producer.send(eventrecord).get();
 
-                LOG.info(new StringBuilder().append("Published ")
-                        .append(msg.topic()).append("/")
-                        .append(msg.partition()).append("/")
-                        .append(msg.offset()).append(" : ")
-                        .append(eventrecord)
-                        .toString());
+                LOG.info(String.format("Published %s/%d/%d : %s", msg.topic(), msg.partition(), msg.offset(), value));
 
                 Thread.sleep(sleeptime);
 
