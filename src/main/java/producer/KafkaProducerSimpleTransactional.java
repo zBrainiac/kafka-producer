@@ -66,7 +66,7 @@ public class KafkaProducerSimpleTransactional {
 
             for (int i = 0; i < 1000000; i++) {
                 producer.beginTransaction();
-                String recordValue = "msg_id:" + i + ", Current_time_is:" + Instant.now().toString();
+                String recordValue = "msg_id:" + i + ",Current_time_is:" + Instant.now().toString();
 
                 ProducerRecord<String, String> eventrecord = new ProducerRecord<>("kafka_simple_transactional", recordValue);
 
