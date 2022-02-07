@@ -23,15 +23,15 @@ import java.util.Random;
  *©
  * run:
  * cd /opt/cloudera/parcels/FLINK/lib/flink/examples/streaming &&
- * java -classpath kafka-producer-0.0.1.0.jar producer.KafkaIOTSensorSimulator localhost:9092
+ * java -classpath kafka-producer-0.0.1.0.jar producer.IOTSensorSimulator localhost:9092
  *
  * @author Marcel Daeppen
  * @version 2021/08/29 14:28
  */
 
-public class KafkaIOTSensorSimulator {
+public class IOTSensorSimulator {
 
-    private static final Logger LOG = LoggerFactory.getLogger(KafkaIOTSensorSimulator.class);
+    private static final Logger LOG = LoggerFactory.getLogger(IOTSensorSimulator.class);
     private static final Random random = new SecureRandom();
     private static final String LOGGERMSG = "Program prop set {}";
     private static String brokerURI = "localhost:9092";
@@ -55,12 +55,12 @@ public class KafkaIOTSensorSimulator {
             LOG.info(LOGGERMSG, parm);
         }
 
-        final Logger logger = LoggerFactory.getLogger(KafkaIOTSensorSimulator.class);
+        final Logger logger = LoggerFactory.getLogger(IOTSensorSimulator.class);
         Properties config = new Properties();
         config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, brokerURI);
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-        config.put(ProducerConfig.CLIENT_ID_CONFIG, "Feeder-KafkaIOTSensorSimulator");
+        config.put(ProducerConfig.CLIENT_ID_CONFIG, "Feeder-IOTSensorSimulator");
         config.put(ProducerConfig.ACKS_CONFIG, "all");
         config.put(ProducerConfig.RECONNECT_BACKOFF_MAX_MS_CONFIG, "250");
         config.put(ProducerConfig.RECONNECT_BACKOFF_MS_CONFIG, "300");
@@ -115,6 +115,6 @@ public class KafkaIOTSensorSimulator {
 
 
     public static void setsleeptime(long sleeptime) {
-        KafkaIOTSensorSimulator.sleeptime = sleeptime;
+        IOTSensorSimulator.sleeptime = sleeptime;
     }
 }

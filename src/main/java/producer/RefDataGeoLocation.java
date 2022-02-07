@@ -26,9 +26,9 @@ import java.util.Properties;
  * @version 2021/08/07 14:28
  */
 
-public class KafkaGeoLocation {
+public class RefDataGeoLocation {
 
-    private static final Logger LOG = LoggerFactory.getLogger(KafkaGeoLocation.class);
+    private static final Logger LOG = LoggerFactory.getLogger(RefDataGeoLocation.class);
     private static final String LOGGERMSG = "Program prop set {}";
 
     private static String brokerURI = "localhost:9092";
@@ -198,7 +198,7 @@ public class KafkaGeoLocation {
     }
 
     public static void setsleeptime(long sleeptime) {
-        KafkaGeoLocation.sleeptime = sleeptime;
+        RefDataGeoLocation.sleeptime = sleeptime;
     }
 
 }
