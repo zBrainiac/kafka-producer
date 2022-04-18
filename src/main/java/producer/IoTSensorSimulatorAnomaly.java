@@ -62,13 +62,18 @@ public class IoTSensorSimulatorAnomaly {
         try (Producer<String, byte[]> producer = new KafkaProducer<>(config)) {
 
             WeightedRandomBag<Integer> itemDrops = new WeightedRandomBag<>();
-            itemDrops.addEntry(0, 1.0);
-            itemDrops.addEntry(1, 999.0);
+            itemDrops.addEntry(0, 5.0);
+            itemDrops.addEntry(1, 20.0);
+            itemDrops.addEntry(2, 50.0);
+            itemDrops.addEntry(3, 15.0);
+            itemDrops.addEntry(4, 10.0);
 
             //prepare the record
 
             for (int i = 0; i < 1000000; i++) {
                 Integer part = itemDrops.getRandom();
+
+                LOG.info(String.valueOf(part));
 
                 if (part == 1){
                     ObjectNode messageJsonObject = jsonObject();
@@ -99,7 +104,7 @@ public class IoTSensorSimulatorAnomaly {
                             .append(msg.topic()).append("/")
                             .append(msg.partition()).append("/")
                             .append(msg.offset()).append(" : ")
-                            .append(jsonObjectAnomaly())
+                            .append(jsonObject())
                             .toString());
                 }
 
@@ -136,7 +141,7 @@ public class IoTSensorSimulatorAnomaly {
 
         ObjectNode report = objectMapper.createObjectNode();
         report.put("sensor_ts", Instant.now().toEpochMilli());
-        report.put("sensor_id", (random.nextInt(3)));
+        report.put("sensor_id", (random.nextInt(7)));
         report.put("sensor_0", (random.nextInt(9)) + 99);
         report.put("sensor_1", (random.nextInt(11)) * 11);
         report.put("sensor_2", (random.nextInt(22)));

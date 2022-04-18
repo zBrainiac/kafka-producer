@@ -31,7 +31,7 @@ public class KafkaProducerSimple {
     private static final Logger LOG = LoggerFactory.getLogger(KafkaProducerSimple.class);
     private static final String LOGGERMSG = "Program prop set {}";
 
-    private static String brokerURI = " ec2-3-69-23-208.eu-central-1.compute.amazonaws.com:9092";
+    private static String brokerURI = "localhost:9092";
     private static long sleeptime = 1000;
 
     public static void main(String[] args) throws Exception {

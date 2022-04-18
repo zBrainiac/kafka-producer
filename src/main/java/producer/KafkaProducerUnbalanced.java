@@ -13,7 +13,7 @@ import java.util.*;
  * Create Kafka Topic:
  *    bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 5 --topic kafka_unbalanced &&
  *    bin/kafka-topics.sh --list --bootstrap-server localhost:9092 &&
- *    bin/kafka-console-consumer.sh --bootstrap-server edge2ai-1.dim.local:9092 --topic kafka_unbalanced
+ *    bin/kafka-console-consumer.sh --bootstrap-server edge2ai-0.dim.local:9092 --topic kafka_unbalanced
  *    bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic kafka_unbalanced
  *
  *

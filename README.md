@@ -39,7 +39,7 @@ run:
 cd /opt/cloudera/parcels/FLINK/lib/flink/examples/streaming  
 java -classpath kafka-producer-0.1.0.0.jar producer.KafkaFSICreditCartTRX or  
 java -classpath kafka-producer-0.1.0.0.jar producer.KafkaFSICreditCartTRX localhost:9092 10 (= 10 sleep time in ms between the messages | default 1'000 ms)  
-java -classpath kafka-producer-0.1.0.0.jar producer.KafkaFSICreditCartTRX edge2ai-1.dim.local:9092
+java -classpath kafka-producer-0.1.0.0.jar producer.KafkaFSICreditCartTRX edge2ai-0.dim.local:9092
 ```
 sample trx output json:
 ```
@@ -50,7 +50,7 @@ sample trx output json:
 cd /opt/cloudera/parcels/FLINK/lib/flink/examples/streaming  
 java -classpath kafka-producer-0.1.0.0.jar producer.KafkaFootballTicketsTRX or  
 java -classpath kafka-producer-0.1.0.0.jar producer.KafkaFootballTicketsTRX localhost:9092 10 (= 10 sleep time in ms between the messages | default 1'000 ms)  
-java -classpath kafka-producer-0.1.0.0.jar producer.KafkaFootballTicketsTRX edge2ai-1.dim.local:9092
+java -classpath kafka-producer-0.1.0.0.jar producer.KafkaFootballTicketsTRX edge2ai-0.dim.local:9092
 ```
 
 
@@ -60,7 +60,7 @@ run:
 cd /opt/cloudera/parcels/FLINK/lib/flink/examples/streaming  
 java -classpath kafka-producer-0.1.0.0.jar producer.KafkaFSIFXRates or  
 java -classpath kafka-producer-0.1.0.0.jar producer.KafkaFSIFXRates localhost:9092 10 (= 10 sleep time in ms between the messages | default 1'000 ms)  
-java -classpath kafka-producer-0.1.0.0.jar producer.KafkaFSIFXRates edge2ai-1.dim.local:9092
+java -classpath kafka-producer-0.1.0.0.jar producer.KafkaFSIFXRates edge2ai-0.dim.local:9092
 ```  
 sample fx output json:
 ```
@@ -72,12 +72,12 @@ run:
 cd /opt/cloudera/parcels/FLINK/lib/flink/examples/streaming  
 java -classpath kafka-producer-0.1.0.0.jar producer.KafkaIOTSensorSimulatorLogCompaction or  
 java -classpath kafka-producer-0.1.0.0.jar producer.KafkaIOTSensorSimulatorLogCompaction localhost:9092 10 (= 10 sleep time in ms between the messages | default 1'000 ms)  
-java -classpath kafka-producer-0.1.0.0.jar producer.KafkaIOTSensorSimulatorLogCompaction edge2ai-1.dim.local:9092
+java -classpath kafka-producer-0.1.0.0.jar producer.KafkaIOTSensorSimulatorLogCompaction edge2ai-0.dim.local:9092
 ```
 simulation of anomalies 1:1'000
 ```
 java -classpath kafka-producer-0.1.0.0.jar producer.IoTSensorSimulatorAnomaly localhost:9092                         
-java -classpath kafka-producer-0.1.0.0.jar producer.IoTSensorSimulatorAnomaly edge2ai-1.dim.local:9092 100                           
+java -classpath kafka-producer-0.1.0.0.jar producer.IoTSensorSimulatorAnomaly edge2ai-0.dim.local:9092 100                           
 ```  
 sample iot output json:
 ```
@@ -90,7 +90,7 @@ run:
 cd /opt/cloudera/parcels/FLINK/lib/flink/examples/streaming  
 java -classpath kafka-producer-0.1.0.0.jar producer.Kafka32kStringSimulator or  
 java -classpath kafka-producer-0.1.0.0.jar producer.Kafka32kStringSimulator localhost:9092 10 (= 10 sleep time in ms between the messages | default 1'000 ms)  
-java -classpath kafka-producer-0.1.0.0.jar producer.Kafka32kStringSimulator edge2ai-1.dim.local:9092                           
+java -classpath kafka-producer-0.1.0.0.jar producer.Kafka32kStringSimulator edge2ai-0.dim.local:9092                           
 ```  
 sample iot output json:
 ```
@@ -105,7 +105,7 @@ run:
 cd /opt/cloudera/parcels/FLINK/lib/flink/examples/streaming  
 java -classpath kafka-producer-0.1.0.0.jar producer.KafkaIOTSimpleCSVProducer or  
 java -classpath kafka-producer-0.1.0.0.jar producer.KafkaIOTSimpleCSVProducer localhost:9092 10 (= 10 sleep time in ms between the messages | default 1'000 ms)  
-java -classpath kafka-producer-0.1.0.0.jar producer.KafkaIOTSimpleCSVProducer edge2ai-1.dim.local:9092  
+java -classpath kafka-producer-0.1.0.0.jar producer.KafkaIOTSimpleCSVProducer edge2ai-0.dim.local:9092  
 ```  
 sample CSV output message:
 ```
@@ -118,7 +118,7 @@ run:
 cd /opt/cloudera/parcels/FLINK/lib/flink/examples/streaming  
 java -classpath kafka-producer-0.1.0.0.jar producer.KafkaIOTSimpleKVProducer or  
 java -classpath kafka-producer-0.1.0.0.jar producer.KafkaIOTSimpleKVProducer localhost:9092 10 (= 10 sleep time in ms between the messages | default 1'000 ms)  
-java -classpath kafka-producer-0.1.0.0.jar producer.KafkaIOTSimpleKVProducer edge2ai-1.dim.local:9092  
+java -classpath kafka-producer-0.1.0.0.jar producer.KafkaIOTSimpleKVProducer edge2ai-0.dim.local:9092  
 ```  
 sample KeyValue output message:
 ```
@@ -131,7 +131,7 @@ run:
 cd /opt/cloudera/parcels/FLINK/lib/flink/examples/streaming  
 java -classpath kafka-producer-0.1.0.0.jar producer.RefDataGeoLocation or  
 java -classpath kafka-producer-0.1.0.0.jar producer.RefDataGeoLocation localhost:9092 10 (= 10 sleep time in ms between the messages | default 1'000 ms)  
-java -classpath kafka-producer-0.1.0.0.jar producer.RefDataGeoLocation edge2ai-1.dim.local:9092  
+java -classpath kafka-producer-0.1.0.0.jar producer.RefDataGeoLocation edge2ai-0.dim.local:9092  
 ```
 
 ### Lookup Weather Condition
@@ -140,7 +140,7 @@ run:
 cd /opt/cloudera/parcels/FLINK/lib/flink/examples/streaming  
 java -classpath kafka-producer-0.1.0.0.jar producer.KafkaLookupWeatherCondition or  
 java -classpath kafka-producer-0.1.0.0.jar producer.KafkaLookupWeatherCondition localhost:9092 10 (= 10 sleep time in ms between the messages | default 1'000 ms)  
-java -classpath kafka-producer-0.1.0.0.jar producer.KafkaLookupWeatherCondition edge2ai-1.dim.local:9092  
+java -classpath kafka-producer-0.1.0.0.jar producer.KafkaLookupWeatherCondition edge2ai-0.dim.local:9092  
 ```
 
 
@@ -150,7 +150,7 @@ run:
 cd /opt/cloudera/parcels/FLINK/lib/flink/examples/streaming  
 java -classpath kafka-producer-0.1.0.0.jar producer.KafkaOPCSimulator or  
 java -classpath kafka-producer-0.1.0.0.jar producer.KafkaOPCSimulator localhost:9092 10 (= 10 sleep time in ms between the messages | default 1'000 ms)  
-java -classpath kafka-producer-0.1.0.0.jar producer.KafkaOPCSimulator edge2ai-1.dim.local:9092
+java -classpath kafka-producer-0.1.0.0.jar producer.KafkaOPCSimulator edge2ai-0.dim.local:9092
 ```  
 sample opc output json:
 ```
@@ -163,7 +163,7 @@ run
 cd /opt/cloudera/parcels/FLINK/lib/flink/examples/streaming  
 java -classpath kafka-producer-0.1.0.0.jar producer.KafkaTrafficCollector or  
 java -classpath kafka-producer-0.1.0.0.jar producer.KafkaTrafficCollector localhost:9092 10 (= 10 sleep time in ms between the messages | default 1'000 ms)  
-java -classpath kafka-producer-0.1.0.0.jar producer.KafkaTrafficCollector edge2ai-1.dim.local:9092
+java -classpath kafka-producer-0.1.0.0.jar producer.KafkaTrafficCollector edge2ai-0.dim.local:9092
 ```  
 sample TrafficCounter output json:
 ```
@@ -180,7 +180,7 @@ run generator:
 cd /opt/cloudera/parcels/FLINK/lib/flink/examples/streaming  
 java -classpath kafka-producer-0.1.0.0.jar producer.KafkaTrafficIOTSensor or  
 java -classpath kafka-producer-0.1.0.0.jar producer.KafkaTrafficIOTSensor localhost:9092 10 (= 10 sleep time in ms between the messages | default 1'000 ms)  
-java -classpath kafka-producer-0.1.0.0.jar producer.KafkaTrafficIOTSensor edge2ai-1.dim.local:9092
+java -classpath kafka-producer-0.1.0.0.jar producer.KafkaTrafficIOTSensor edge2ai-0.dim.local:9092
 ```  
 sample IOT Sensor output json:
 ```
@@ -193,15 +193,15 @@ This Kafka producer send events unbalanced to a kafka topic.
 create kafka topic:
 ```
 cd /opt/cloudera/parcels/CDH  
-./bin/kafka-topics --create --bootstrap-server edge2ai-1.dim.local:9092 --replication-factor 1 --partitions 5 --topic kafka_unbalanced &&
-./bin/kafka-topics --list --bootstrap-server edge2ai-1.dim.local:9092 &&
-./bin/kafka-topics --describe --bootstrap-server edge2ai-1.dim.local:9092 --topic kafka_unbalanced && 
-./bin/kafka-console-consumer --bootstrap-server edge2ai-1.dim.local:9092 --topic kafka_unbalanced
+./bin/kafka-topics --create --bootstrap-server edge2ai-0.dim.local:9092 --replication-factor 1 --partitions 5 --topic kafka_unbalanced &&
+./bin/kafka-topics --list --bootstrap-server edge2ai-0.dim.local:9092 &&
+./bin/kafka-topics --describe --bootstrap-server edge2ai-0.dim.local:9092 --topic kafka_unbalanced && 
+./bin/kafka-console-consumer --bootstrap-server edge2ai-0.dim.local:9092 --topic kafka_unbalanced
 ```
 run generator:
 ```
 cd /opt/cloudera/parcels/FLINK/lib/flink/examples/streaming &&  
-java -classpath kafka-producer-0.1.0.0.jar producer.KafkaProducerUnbalanced edge2ai-1.dim.local:9092 99
+java -classpath kafka-producer-0.1.0.0.jar producer.KafkaProducerUnbalanced edge2ai-0.dim.local:9092 99
 ```
 ### Simple Kafka Generator
 Super simple Kafka producer  
@@ -209,14 +209,14 @@ Super simple Kafka producer
 create kafka topic:
 ```
 cd /opt/cloudera/parcels/CDH  
-./bin/kafka-topics --create --bootstrap-server edge2ai-1.dim.local:9092 --replication-factor 1 --partitions 5 --topic kafka_simple &&
-./bin/kafka-topics --list --bootstrap-server edge2ai-1.dim.local:9092 &&
-./bin/kafka-console-consumer --bootstrap-server edge2ai-1.dim.local:9092 --topic kafka_simple
+./bin/kafka-topics --create --bootstrap-server edge2ai-0.dim.local:9092 --replication-factor 1 --partitions 5 --topic kafka_simple &&
+./bin/kafka-topics --list --bootstrap-server edge2ai-0.dim.local:9092 &&
+./bin/kafka-console-consumer --bootstrap-server edge2ai-0.dim.local:9092 --topic kafka_simple
 ```
 run generator:
 ```
 cd /opt/cloudera/parcels/FLINK/lib/flink/examples/streaming &&  
-java -classpath kafka-producer-0.1.0.0.jar producer.KafkaProducerSimple edge2ai-1.dim.local:9092 99
+java -classpath kafka-producer-0.1.0.0.jar producer.KafkaProducerSimple edge2ai-0.dim.local:9092 99
 ```
 
 ### Let run multiple JAVA processes in the background
@@ -225,17 +225,17 @@ Create a new nohup.sh with a list of jar's
 Sample:
 ```
 #!/bin/sh
-nohup java -classpath kafka-producer-0.1.0.0.jar producer.KafkaFSIFXRates edge2ai-1.dim.local:9092 &
-nohup java -classpath kafka-producer-0.1.0.0.jar producer.KafkaFSICreditCartTRX edge2ai-1.dim.local:9092 &
-nohup java -classpath kafka-producer-0.1.0.0.jar producer.KafkaIOTSensorSimulatorLogCompaction edge2ai-1.dim.local:9092 &
+nohup java -classpath kafka-producer-0.1.0.0.jar producer.KafkaFSIFXRates edge2ai-0.dim.local:9092 &
+nohup java -classpath kafka-producer-0.1.0.0.jar producer.KafkaFSICreditCartTRX edge2ai-0.dim.local:9092 &
+nohup java -classpath kafka-producer-0.1.0.0.jar producer.KafkaIOTSensorSimulatorLogCompaction edge2ai-0.dim.local:9092 &
 ```
 
 ```
 #!/bin/sh
 cd /opt/cloudera/parcels/FLINK/lib/flink/examples/streaming  
-java -classpath kafka-producer-0.1.0.0.jar producer.KafkaTrafficCollector edge2ai-1.dim.local:9092 &
+java -classpath kafka-producer-0.1.0.0.jar producer.KafkaTrafficCollector edge2ai-0.dim.local:9092 &
 echo $! > run_KafkaTrafficCollector.pid &
-java -classpath kafka-producer-0.1.0.0.jar producer.KafkaTrafficIOTSensor edge2ai-1.dim.local:9092 &
+java -classpath kafka-producer-0.1.0.0.jar producer.KafkaTrafficIOTSensor edge2ai-0.dim.local:9092 &
 echo $! > run_KafkaTrafficIOTSensor.pid &
 ```
 
